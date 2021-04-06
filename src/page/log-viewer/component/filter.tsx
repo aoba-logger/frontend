@@ -15,7 +15,9 @@ interface Props {
 function Filter ({ onQuery }: Props) {
   const formik = useFormik<LogQueryParams>({
     initialValues: {
-      level: []
+      level: [],
+      page: 1,
+      pageSize: 4,
     },
     onSubmit: onQuery
   })
@@ -28,7 +30,7 @@ function Filter ({ onQuery }: Props) {
             <MenuItem key={i} value={level[0]}>{level[1]}</MenuItem>
           ))}
         </Select>
-        <Button color="primary" type="submit" variant="contained">Query</Button>
+        <Button color="primary" type="submit" variant="contained" onClick={() => formik.handleSubmit()}>Query</Button>
       </form>
     </div>
   )

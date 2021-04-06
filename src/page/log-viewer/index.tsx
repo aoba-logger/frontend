@@ -4,9 +4,11 @@ import { Log, LogQueryParams, queryLogs } from '../../service/log'
 import DetailDialog from './component/detail-dialog'
 import Filter from'./component/filter'
 import LogTable from './component/log-table'
+import Pagination from '@material-ui/lab/Pagination';
+
 
 function LogViewer () {
-  const [ queryParams, setQueryParams ] = useState<LogQueryParams>({})
+  const [ queryParams, setQueryParams ] = useState<LogQueryParams>({page: 1, pageSize: 4})
 
   const [ viewingLog, setViewingLog ] = useState<Log | undefined>()
 
@@ -22,6 +24,7 @@ function LogViewer () {
       <div className="flex-auto">
         <LogTable logs={data} onLogClick={setViewingLog}></LogTable>
       </div>
+      <Pagination count={100} page={queryParams.page} onChange={(_, page) => {setQueryParams({...queryParams, page})}}></Pagination>
       <DetailDialog log={viewingLog} onClose={() => setViewingLog(undefined)}></DetailDialog>
     </div>
   )

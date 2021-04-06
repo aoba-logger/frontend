@@ -30,10 +30,16 @@ interface LogRaw {
 }
 
 export interface LogQueryParams {
-  level?: LogLevel[]
+  level?: LogLevel[],
+  page: number,
+  pageSize: number
 }
 
 export const queryLogs = async (params: LogQueryParams) => {
   const res = await request.get<LogRaw[]>('log', { params })
   return res.data.map(log => new Log(log))
+}
+
+export const deleteLog = async (id: number) => {
+  return request.delete(`log/${id}`)
 }
