@@ -1,6 +1,5 @@
 import { IconButton, Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core"
 import DeleteIcon from '@material-ui/icons/Delete';
-import React from "react"
 import { Log } from "../../../service/log"
 
 interface Props {
@@ -16,18 +15,20 @@ function LogTable({ logs, onLogClick }: Props) {
         <TableHead>
           <TableRow>
             <TableCell>Level</TableCell>
+            <TableCell>Time</TableCell>
             <TableCell>Message</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {logs.map(log => (
-            <TableRow key={log.id} onClick={() => onLogClick(log)}>
+            <TableRow key={log.id} onClick={() => onLogClick(log)} className="cursor-pointer">
               <TableCell>{log.level}</TableCell>
+              <TableCell>{log.created.format('YY/MM/DD HH:mm')}</TableCell>
               <TableCell>{log.message}</TableCell>
               <TableCell align="right">
                 <IconButton>
-                  <DeleteIcon></DeleteIcon>
+                  <DeleteIcon />
                 </IconButton>
               </TableCell>
             </TableRow>

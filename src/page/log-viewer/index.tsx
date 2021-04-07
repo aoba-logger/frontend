@@ -8,7 +8,7 @@ import Pagination from '@material-ui/lab/Pagination';
 
 
 function LogViewer () {
-  const [ queryParams, setQueryParams ] = useState<LogQueryParams>({page: 1, pageSize: 4})
+  const [ queryParams, setQueryParams ] = useState<LogQueryParams>({page: 1, pageSize: 10})
 
   const [ viewingLog, setViewingLog ] = useState<Log | undefined>()
 
@@ -20,7 +20,7 @@ function LogViewer () {
 
   return (
     <div className="container mx-auto flex flex-col h-full">
-      <Filter onQuery={setQueryParams}></Filter>
+      <Filter onQuery={(p) => setQueryParams({...queryParams, ...p})}></Filter>
       <div className="flex-auto">
         <LogTable logs={data} onLogClick={setViewingLog}></LogTable>
       </div>

@@ -9,15 +9,13 @@ const levelMap: Record<LogLevel, string> = {
 }
 
 interface Props {
-  onQuery(params: LogQueryParams): void
+  onQuery(params: Partial<LogQueryParams>): void
 }
 
 function Filter ({ onQuery }: Props) {
-  const formik = useFormik<LogQueryParams>({
+  const formik = useFormik<Partial<LogQueryParams>>({
     initialValues: {
-      level: [],
-      page: 1,
-      pageSize: 4,
+      level: []
     },
     onSubmit: onQuery
   })

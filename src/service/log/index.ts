@@ -17,7 +17,7 @@ export class Log {
   constructor(log: LogRaw) {
     this.created = dayjs(log.CreatedAt)
     this.level = log.level
-    this.message = log.message
+    this.message = JSON.parse(log.message)
     this.id = log.ID
   }
 }
@@ -26,7 +26,7 @@ interface LogRaw {
   ID: number
   CreatedAt: string
   level: LogLevel
-  message: any[]
+  message: string
 }
 
 export interface LogQueryParams {
