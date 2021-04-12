@@ -14,7 +14,6 @@ function LogViewer () {
 
   const { data, error } = useSWR(['/api/log', queryParams], (url, params) => queryLogs(params))
 
-
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
 

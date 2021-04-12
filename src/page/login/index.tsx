@@ -1,6 +1,10 @@
+import Form from "./component/login-form"
+
 function Login() {
   return (
-    <div>Login</div>
+    <div>
+      <Form></Form>
+    </div>
   )
 }
 
