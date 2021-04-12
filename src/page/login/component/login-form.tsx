@@ -1,15 +1,15 @@
 import { Button, TextField } from "@material-ui/core"
 import { useFormik } from "formik"
-import { useHistory } from "react-router-dom"
 import { auth, AuthParams } from "../../../service/auth"
 import * as yup from "yup"
+import { useAuth } from "../../../utils/hooks/auth"
 
 const validationSchema: yup.SchemaOf<AuthParams> = yup.object().shape({
   password: yup.string().required("Password is required")
 })
 
 function LoginForm() {
-  const history = useHistory()
+  const { login } = useAuth()
   const formContext = useFormik<AuthParams>({
     initialValues: {
       password: ""
@@ -18,7 +18,7 @@ function LoginForm() {
     onSubmit: async (params) => {
       try {
         await auth(params)
-        history.push("/log-viewer")
+        login()
       } catch (error) {
         console.error(error)
       }
@@ -26,8 +26,8 @@ function LoginForm() {
   })
   return (
     <form onSubmit={formContext.handleSubmit}>
-      <TextField id="password" type="password" name="password" value={formContext.values.password} onChange={formContext.handleChange} helperText={formContext.errors.password} error={!!formContext.errors.password}></TextField>
-      <Button type="submit" >Login</Button>
+      <TextField data-test-id="password-field" type="password" name="password" value={formContext.values.password} onChange={formContext.handleChange} helperText={formContext.errors.password} error={!!formContext.errors.password}></TextField>
+      <Button data-test-id="login-button" type="submit" >Login</Button>
     </form>
   )
 }
