@@ -26,8 +26,8 @@ function LoginForm() {
   })
   return (
     <form onSubmit={formContext.handleSubmit}>
-      <TextField data-test-id="password-field" type="password" name="password" value={formContext.values.password} onChange={formContext.handleChange} helperText={formContext.errors.password} error={!!formContext.errors.password}></TextField>
-      <Button data-test-id="login-button" type="submit" >Login</Button>
+      <TextField data-testid="password-field" type="password" name="password" value={formContext.values.password} onChange={formContext.handleChange} helperText={formContext.errors.password} error={!!formContext.errors.password}></TextField>
+      <Button data-testid="login-button" type="submit" >Login</Button>
     </form>
   )
 }

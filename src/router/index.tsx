@@ -13,7 +13,7 @@ function AppRouter() {
           {!loggedIn ? <Redirect to="/login" /> : <Redirect to="/log-viewer" />}
         </Route>
         <Route path="/login">
-          {loggedIn ? <Redirect to="/log-viewer" /> : <Login />}
+          {!loggedIn ? <Login /> : <Redirect to="/log-viewer" />}
         </Route>
         <Route path="/log-viewer">
           {!loggedIn ? <Redirect to="/login" /> : <LogViewer />}
